@@ -1,11 +1,9 @@
 const express = require('express');
 
-
 const { configureRouter } = require('./router');
 const { logMiddleware, errorHandler } = require('./middleware');
 const connectDB = require('./db');
 const config = require('./config');
-
 
 const port = config.PORT;
 

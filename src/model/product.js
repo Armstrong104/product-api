@@ -9,21 +9,21 @@ const productSchema = new mongoose.Schema(
     description: String,
     image: String,
     price: {
-        type: Number,
-        required: true,
-        default: 0,
+      type: Number,
+      required: true,
+      default: 0,
     },
     quantity: {
-        type: Number,
-        required: true,
-        default: 0,
+      type: Number,
+      required: true,
+      default: 0,
     },
     category: [String],
     metadata: {
-        isFeatured: {
-            type: Boolean,
-            default: false,
-        },
+      isFeatured: {
+        type: Boolean,
+        default: false,
+      },
     },
     deleted: {
       type: Boolean,
@@ -31,7 +31,7 @@ const productSchema = new mongoose.Schema(
     },
     deletedAt: Date,
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const Product = mongoose.model('Product', productSchema);
