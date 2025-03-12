@@ -26,7 +26,7 @@ const createProduct = async (productPayload) => {
 
 const getAllProducts = async () => {
   const products = await Product.find({ deleted: false }).select(
-    '_id name price image'
+    '_id name price image quantity'
   );
   return products;
 };

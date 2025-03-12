@@ -1,5 +1,20 @@
 const mongoose = require('mongoose');
 
+const reviewSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    required: true,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+});
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -18,13 +33,14 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    category: [String],
+    categories: [String],
     metadata: {
       isFeatured: {
         type: Boolean,
         default: false,
       },
     },
+    reviews: [reviewSchema],
     deleted: {
       type: Boolean,
       default: false,
