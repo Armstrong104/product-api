@@ -3,7 +3,7 @@
 - [x] Create a simple CRUD app with express
 - [x] Add router, middleware, and error handling
 - [x] Add mongoDB and implement CRUD
-- [ ] Validation with zod
+- [x] Validation with zod
 - [x] Validation middleware
 - [ ] File upload
 - [ ] Authentication

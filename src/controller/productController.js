@@ -3,9 +3,7 @@ const { productServices } = require('../service');
 const { ProductSchema } = require('../schema/product');
 
 const createProduct = asyncHandler(async (req, res) => {
-  const payload = req.body;
-  const validatedPayload = ProductSchema.omit({ _id: true }).parse(payload);
-  const newProduct = await productServices.createProduct(validatedPayload);
+  const newProduct = await productServices.createProduct(req.body);
   res.status(201).json({
     message: 'Product created successfully',
     product: newProduct,
