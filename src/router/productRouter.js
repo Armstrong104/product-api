@@ -2,7 +2,7 @@ const express = require('express');
 
 const { ProductSchema } = require('../schema');
 const { productController } = require('../controller');
-const { validatePayload } = require('../middleware');
+const { validatePayload, rateLimit } = require('../middleware');
 
 const productRouter = express.Router();
 

@@ -12,7 +12,7 @@
 - [x] environment variables
 - [ ] Dockerize app
 - [ ] Migrate to TypeScript
-- [ ] Rate limiting
+- [x] Rate limiting
 - [ ] Caching
 - [ ] Pagination
 - [ ] Unit Testing
