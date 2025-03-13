@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const { rateLimit } = require('express-rate-limit');
 const { configureRouter } = require('./router');
@@ -17,6 +18,8 @@ const limiter = rateLimit({
 const port = config.PORT;
 
 const app = express();
+
+app.use(cors(config.CORS));
 
 connectDB();
 
