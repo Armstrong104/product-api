@@ -2,11 +2,11 @@ const express = require('express');
 
 const { ProductSchema } = require('../schema');
 const { productController } = require('../controller');
-const { validatePayload, rateLimit } = require('../middleware');
+const { validatePayload} = require('../middleware');
 
 const productRouter = express.Router();
 
-productRouter.get('/', productController.getAllProducts);
+productRouter.get('/', productController.getProducts);
 productRouter.get('/:id', productController.getProductById);
 
 productRouter.post(

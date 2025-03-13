@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler');
 const { productServices } = require('../service');
-const { ProductSchema } = require('../schema/product');
 
 const createProduct = asyncHandler(async (req, res) => {
   const newProduct = await productServices.createProduct(req.body);
@@ -10,8 +9,12 @@ const createProduct = asyncHandler(async (req, res) => {
   });
 });
 
-const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await productServices.getAllProducts();
+const getProducts = asyncHandler(async (req, res) => {
+  const { page, limit } = req.query;
+  const products = await productServices.getProducts({
+    page: parseInt(page || '0'),
+    limit: parseInt(limit || '10'),
+  });
   res.status(200).json(products);
 });
 
@@ -33,7 +36,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 const deleteProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const deletedProduct = await productServices.deleteProduct(id);
-  res.status(201).json({
+  res.status(200).json({
     message: 'Product deleted successfully',
     product: deletedProduct,
   });
@@ -41,7 +44,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 module.exports = {
   createProduct,
-  getAllProducts,
+  getProducts,
   updateProduct,
   deleteProduct,
   getProductById,

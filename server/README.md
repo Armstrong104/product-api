@@ -14,5 +14,5 @@
 - [ ] Migrate to TypeScript
 - [x] Rate limiting
 - [ ] Caching
-- [ ] Pagination
+- [x] Pagination
 - [ ] Unit Testing
