@@ -1,8 +1,8 @@
-import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
 import useProducts from '../hooks/useProducts';
 import { useMemo } from 'react';
+import { Box, Button } from '@mui/material';
 
 const columns = [
   { field: 'sl', headerName: 'SL', width: 90 },
@@ -27,6 +27,41 @@ const columns = [
     field: 'image',
     headerName: 'Image',
     width: 160,
+  },
+  {
+    field: 'action',
+    headerName: 'Action',
+    headerAlign: 'center',
+    flex: 1,
+    sortable: false,
+    renderCell: () => (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 2,
+          pt: 1,
+        }}
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          style={{ marginLeft: 16 }}
+        >
+          Edit
+        </Button>
+        <Button
+          variant="contained"
+          color="error"
+          size="small"
+          style={{ marginLeft: 16 }}
+        >
+          Delete
+        </Button>
+      </Box>
+    ),
   },
 ];
 
