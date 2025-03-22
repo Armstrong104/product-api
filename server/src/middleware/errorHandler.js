@@ -10,7 +10,11 @@ const errorHandler = (err, req, res, next) => {
     return res.status(404).send(err.message);
   }
   if (
-    err instanceof mongoose.Error.ValidationError ||
+          err instanceof mongoose.Error.ValidationError ||
+
+
+
+          
     err instanceof mongoose.Error.CastError
   ) {
     return res.status(400).send(err.message);
