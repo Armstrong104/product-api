@@ -9,6 +9,7 @@
 - [ ] Authentication
 - [ ] Logging
 - [x] Lint
+- [x] Prettier formatting
 - [x] environment variables
 - [ ] Dockerize app
 - [ ] Migrate to TypeScript
