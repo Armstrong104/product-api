@@ -1,6 +1,7 @@
 const { mongoose } = require('mongoose');
 const { z } = require('zod');
 const NotFoundError = require('../errors');
+const logger = require('../config/logger');
 
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
@@ -17,7 +18,7 @@ const errorHandler = (err, req, res, next) => {
     return res.status(400).send(err.message);
   }
 
-  console.error(err.stack);
+  logger.error(err.stack);
   res.status(500).send('Internal server error');
 };
 

@@ -7,7 +7,7 @@
 - [x] Validation middleware
 - [ ] File upload
 - [ ] Authentication
-- [ ] Logging
+- [x] Logging
 - [x] Lint
 - [x] Prettier formatting
 - [x] environment variables

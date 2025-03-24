@@ -10,7 +10,6 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 const getProducts = asyncHandler(async (req, res) => {
-  console.log(req.body);
   const { page, limit } = req.query;
   const products = await productServices.getProducts({
     page: parseInt(page || '0'),
