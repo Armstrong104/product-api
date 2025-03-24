@@ -8,7 +8,7 @@
 - [ ] File upload
 - [ ] Authentication
 - [ ] Logging
-- [ ] Lint
+- [x] Lint
 - [x] environment variables
 - [ ] Dockerize app
 - [ ] Migrate to TypeScript
