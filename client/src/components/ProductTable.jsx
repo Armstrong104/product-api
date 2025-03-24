@@ -4,69 +4,78 @@ import useProducts from '../hooks/useProducts';
 import { useMemo } from 'react';
 import { Box, Button } from '@mui/material';
 
-const columns = [
-  { field: 'sl', headerName: 'SL', width: 90 },
-  {
-    field: 'name',
-    headerName: 'Product name',
-    width: 150,
-  },
-  {
-    field: 'price',
-    headerName: 'Price',
-    width: 150,
-    type: 'number',
-  },
-  {
-    field: 'quantity',
-    headerName: 'Quantity',
-    type: 'number',
-    width: 150,
-  },
-  {
-    field: 'image',
-    headerName: 'Image',
-    width: 160,
-  },
-  {
-    field: 'action',
-    headerName: 'Action',
-    headerAlign: 'center',
-    flex: 1,
-    sortable: false,
-    renderCell: () => (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 2,
-          pt: 1,
-        }}
-      >
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          style={{ marginLeft: 16 }}
-        >
-          Edit
-        </Button>
-        <Button
-          variant="contained"
-          color="error"
-          size="small"
-          style={{ marginLeft: 16 }}
-        >
-          Delete
-        </Button>
-      </Box>
-    ),
-  },
-];
+export function ProductTable({ onEdit, onEditClick }) {
+  const { productQuery, productDeleteMutation } = useProducts();
 
-export function ProductTable() {
-  const { productQuery } = useProducts();
+  const handleEdit = (product) => {
+    onEdit(product);
+    onEditClick(true);
+  };
+
+  const columns = [
+    { field: 'sl', headerName: 'SL', width: 90 },
+    {
+      field: 'name',
+      headerName: 'Product name',
+      width: 150,
+    },
+    {
+      field: 'price',
+      headerName: 'Price',
+      width: 150,
+      type: 'number',
+    },
+    {
+      field: 'quantity',
+      headerName: 'Quantity',
+      type: 'number',
+      width: 150,
+    },
+    {
+      field: 'image',
+      headerName: 'Image',
+      width: 160,
+    },
+    {
+      field: 'action',
+      headerName: 'Action',
+      headerAlign: 'center',
+      flex: 1,
+      sortable: false,
+      renderCell: (params) => (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 2,
+            pt: 1,
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => handleEdit(params.row)}
+          >
+            Edit
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            size="small"
+            onClick={() => {
+              if (window.confirm('Are you sure you want to delete this product?')) {
+                productDeleteMutation.mutate(params.row.id);
+              }
+            }}
+          >
+            Delete
+          </Button>
+        </Box>
+      ),
+    },
+  ];
 
   const formattedRows = useMemo(
     () =>

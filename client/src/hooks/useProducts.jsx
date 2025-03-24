@@ -21,7 +21,36 @@ export default function useProducts() {
     },
   });
 
-  return { productQuery, productCreateMutation };
+  const productUpdateMutation = useMutation({
+    mutationFn: updateProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries(PRODUCT_QUERY_KEY);
+      alert('Product updated successfully');
+    },
+    onError: (error) => {
+      alert('Product update failed');
+      console.error(error);
+    },
+  });
+
+  const productDeleteMutation = useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries(PRODUCT_QUERY_KEY);
+      alert('Product deleted successfully');
+    },
+    onError: (error) => {
+      alert('Product deletion failed');
+      console.error(error);
+    },
+  });
+
+  return {
+    productQuery,
+    productCreateMutation,
+    productUpdateMutation,
+    productDeleteMutation,
+  };
 }
 
 const fetchProducts = async () => {
@@ -31,5 +60,15 @@ const fetchProducts = async () => {
 
 const createProduct = async (productPayload) => {
   const { data } = await http.post('/api/products', productPayload);
+  return data;
+};
+
+const updateProduct = async ({ id, payload }) => {
+  const { data } = await http.put(`/api/products/${id}`, payload);
+  return data;
+};
+
+const deleteProduct = async (id) => {
+  const { data } = await http.delete(`/api/products/${id}`);
   return data;
 };

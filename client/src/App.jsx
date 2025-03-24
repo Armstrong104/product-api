@@ -9,12 +9,31 @@ const productPlaceholder = {
   description: '',
   price: 0,
   quantity: 0,
-  imageUrl: '',
+  image: '',
 };
 
 function App() {
   const [open, setOpen] = useState(false);
-  const { productCreateMutation } = useProducts();
+  const [editProduct, setEditProduct] = useState(null);
+  const { productCreateMutation, productUpdateMutation } = useProducts();
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+    setEditProduct(null);
+  };
+
+  const handleSubmit = async (payload) => {
+    if (editProduct) {
+      await productUpdateMutation.mutateAsync({
+        id: editProduct.id,
+        payload,
+      });
+    } else {
+      await productCreateMutation.mutateAsync(payload);
+    }
+    handleDrawerClose();
+  };
+
   return (
     <Box>
       <Box
@@ -29,16 +48,12 @@ function App() {
         </Button>
       </Box>
       <Box>
-        <ProductTable />
-        <Drawer anchor={'right'} open={open} onClose={() => setOpen(false)}>
+        <ProductTable onEdit={setEditProduct} onEditClick={setOpen} />
+        <Drawer anchor={'right'} open={open} onClose={handleDrawerClose}>
           <Box sx={{ width: 500, p: 2 }}>
             <ProductForm
-              placeholder={productPlaceholder}
-              onSubmit={(payload) =>
-                productCreateMutation
-                  .mutateAsync(payload)
-                  .finally(() => setOpen(false))
-              }
+              placeholder={editProduct || productPlaceholder}
+              onSubmit={handleSubmit}
             />
           </Box>
         </Drawer>
