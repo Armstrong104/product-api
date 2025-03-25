@@ -2,7 +2,8 @@ import { DataGrid } from '@mui/x-data-grid';
 
 import useProducts from '../hooks/useProducts';
 import { useMemo } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button } from '../ui';
+import appConfig from '../config/appConfig';
 
 export function ProductTable({ onEdit, onEditClick }) {
   const { productQuery, productDeleteMutation } = useProducts();
@@ -35,6 +36,14 @@ export function ProductTable({ onEdit, onEditClick }) {
       field: 'image',
       headerName: 'Image',
       width: 160,
+      renderCell: ({ row }) => {
+        console.log(row);
+        return (
+          <Box height={200}>
+            <img src={`${appConfig.BASE_URL}${row.image}`} alt={row.name} style={{ height: '100px'}}/>
+          </Box>
+        )
+      },
     },
     {
       field: 'action',
@@ -65,7 +74,9 @@ export function ProductTable({ onEdit, onEditClick }) {
             color="error"
             size="small"
             onClick={() => {
-              if (window.confirm('Are you sure you want to delete this product?')) {
+              if (
+                window.confirm('Are you sure you want to delete this product?')
+              ) {
                 productDeleteMutation.mutate(params.row.id);
               }
             }}
@@ -96,6 +107,7 @@ export function ProductTable({ onEdit, onEditClick }) {
         rows={formattedRows}
         columns={columns}
         disableRowSelectionOnClick
+        rowHeight={150}
       />
     </Box>
   );
