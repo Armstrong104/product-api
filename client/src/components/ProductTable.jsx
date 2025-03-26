@@ -40,9 +40,13 @@ export function ProductTable({ onEdit, onEditClick }) {
         console.log(row);
         return (
           <Box height={200}>
-            <img src={`${appConfig.BASE_URL}${row.image}`} alt={row.name} style={{ height: '100px'}}/>
+            <img
+              src={`${appConfig.BASE_URL}${row.image}`}
+              alt={row.name}
+              style={{ height: '100px' }}
+            />
           </Box>
-        )
+        );
       },
     },
     {
