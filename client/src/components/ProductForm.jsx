@@ -1,15 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  Box,
-  Button,
-  IconButton,
-  Stack,
-  TextField,
-  CloudUploadIcon,
-  DeleteIcon,
-} from '../ui';
+import { Box, Button, IconButton, Stack, TextField, CloudUploadIcon, DeleteIcon } from '../ui';
 
 import { useRef, useState } from 'react';
 
@@ -72,11 +64,7 @@ export const ProductForm = ({ placeholder, onSubmit }) => {
   };
 
   return (
-    <Stack
-      component="form"
-      spacing={3}
-      onSubmit={form.handleSubmit(handleFormSubmit)}
-    >
+    <Stack component="form" spacing={3} onSubmit={form.handleSubmit(handleFormSubmit)}>
       <Box component="h3">Product Form</Box>
       <TextField
         label="Name"

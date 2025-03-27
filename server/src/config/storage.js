@@ -4,10 +4,7 @@ const fs = require('fs');
 const config = require('.');
 const logger = require('./logger');
 
-const uploadDir = path.join(
-  __dirname,
-  `../../${config.FILE_SERVER.UPLOAD_DIR}`
-);
+const uploadDir = path.join(__dirname, `../../${config.FILE_SERVER.UPLOAD_DIR}`);
 
 if (!fs.existsSync(uploadDir)) {
   logger.warn('Upload directory does not exist');

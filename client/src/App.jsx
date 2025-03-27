@@ -51,10 +51,7 @@ function App() {
         <ProductTable onEdit={setEditProduct} onEditClick={setOpen} />
         <Drawer anchor={'right'} open={open} onClose={handleDrawerClose}>
           <Box sx={{ width: 500, p: 2 }}>
-            <ProductForm
-              placeholder={editProduct || productPlaceholder}
-              onSubmit={handleSubmit}
-            />
+            <ProductForm placeholder={editProduct || productPlaceholder} onSubmit={handleSubmit} />
           </Box>
         </Drawer>
       </Box>

@@ -78,9 +78,7 @@ export function ProductTable({ onEdit, onEditClick }) {
             color="error"
             size="small"
             onClick={() => {
-              if (
-                window.confirm('Are you sure you want to delete this product?')
-              ) {
+              if (window.confirm('Are you sure you want to delete this product?')) {
                 productDeleteMutation.mutate(params.row.id);
               }
             }}

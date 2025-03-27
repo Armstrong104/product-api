@@ -24,10 +24,7 @@ const updateProduct = async (id, payload) => {
 };
 
 const deleteProduct = async (id) => {
-  return await Product.findOneAndUpdate(
-    { _id: id },
-    { deleted: true, deletedAt: new Date() }
-  );
+  return await Product.findOneAndUpdate({ _id: id }, { deleted: true, deletedAt: new Date() });
 };
 
 module.exports = {
