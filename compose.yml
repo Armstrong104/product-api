@@ -14,9 +14,12 @@ services:
     ports:
       - 5173:5173
     volumes:
-      - ./client/src:/code/src
+      - ./client:/code
+      - /code/node_modules 
     environment:
-      - VITE_BASE_URL=http://product-server:9000/api
+      - VITE_BASE_URL=http://ap-server:9000/api
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
 
   product-server:
     build:
