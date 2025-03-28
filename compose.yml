@@ -16,7 +16,8 @@ services:
     volumes:
       - ./client/src:/code/src
     environment:
-      - VITE_BASE_URL=http://product-server:9000/api
+      - VITE_BASE_URL=http://ap-server:9000/api
+      - CHOKIDAR_USEPOLLING=true
 
   product-server:
     build:
